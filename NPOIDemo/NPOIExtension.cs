@@ -23,7 +23,6 @@ namespace NPOIDemo
             cellStyle.BorderTop = borderTop;
             cellStyle.BorderRight = borderRight;
             cellStyle.BorderBottom = borderBottom;
-
             if (font != null)
             {
                 NPOI.SS.UserModel.IFont cellFont = workbook.CreateFont();
@@ -34,7 +33,6 @@ namespace NPOIDemo
                 cellFont.Boldweight = (short)(font.Bold ? NPOI.SS.UserModel.FontBoldWeight.Bold : NPOI.SS.UserModel.FontBoldWeight.Normal);
                 cellStyle.SetFont(cellFont);
             }
-
             return cellStyle;
         }
         #endregion
