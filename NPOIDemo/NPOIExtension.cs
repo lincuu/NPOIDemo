@@ -127,6 +127,18 @@ namespace NPOIDemo
                                 case NPOI.SS.UserModel.CellType.Formula:
                                     dataSourceRow[columnIndex] = cell.NumericCellValue;
                                     break;
+                                case NPOI.SS.UserModel.CellType.Numeric:
+                                    if (NPOI.SS.UserModel.DateUtil.IsCellDateFormatted(cell))
+                                    { dataSourceRow[columnIndex] = cell.DateCellValue; }
+                                    else
+                                    { dataSourceRow[columnIndex] = cell.NumericCellValue; }
+                                    break;
+                                case NPOI.SS.UserModel.CellType.String:
+                                    dataSourceRow[columnIndex] = cell.StringCellValue;
+                                    break;
+                                default:
+                                    dataSourceRow[columnIndex] = cell.ToString();
+                                    break;
                             }
                             
                         }
