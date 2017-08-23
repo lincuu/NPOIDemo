@@ -176,13 +176,33 @@ namespace NPOIDemo
                         NPOI.SS.UserModel.ICell cell = row.GetCell(cellIndex);
                         if (cell != null)
                         {
-                            //switch (cell.CellType)
-                            //{
-                            //    case NPOI.SS.UserModel.CellType.Blank:
-                            //        dataSourceRow[columnIndex] = "";
-                            //        break;
-                            //}
-                            dataSourceRow[columnIndex] = cell.ToString();
+                            switch (cell.CellType)
+                            {
+                                case NPOI.SS.UserModel.CellType.Blank:
+                                    dataSourceRow[columnIndex] = "";
+                                    break;
+                                case NPOI.SS.UserModel.CellType.Boolean:
+                                    dataSourceRow[columnIndex] = cell.BooleanCellValue;
+                                    break;
+                                case NPOI.SS.UserModel.CellType.Error:
+                                    dataSourceRow[columnIndex] = cell.ErrorCellValue;
+                                    break;
+                                case NPOI.SS.UserModel.CellType.Formula:
+                                    dataSourceRow[columnIndex] = cell.NumericCellValue;
+                                    break;
+                                case NPOI.SS.UserModel.CellType.Numeric:
+                                    if (NPOI.SS.UserModel.DateUtil.IsCellDateFormatted(cell))
+                                    { dataSourceRow[columnIndex] = cell.DateCellValue; }
+                                    else
+                                    { dataSourceRow[columnIndex] = cell.NumericCellValue; }
+                                    break;
+                                case NPOI.SS.UserModel.CellType.String:
+                                    dataSourceRow[columnIndex] = cell.StringCellValue;
+                                    break;
+                                default:
+                                    dataSourceRow[columnIndex] = cell.ToString();
+                                    break;
+                            }
                         }
                         columnIndex++;
                     });
