@@ -140,13 +140,10 @@ namespace NPOIDemo
                                     dataSourceRow[columnIndex] = cell.ToString();
                                     break;
                             }
-                            
                         }
-                        
                     }
                 }
             }
-
             return dataSource;
         }
         #endregion
